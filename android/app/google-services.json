@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "15432592759",
+    "project_id": "studybooth-flutter",
+    "storage_bucket": "studybooth-flutter.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:15432592759:android:a4ed9a1ec16994ab204572",
+        "android_client_info": {
+          "package_name": "com.studybooth_application.studybooth"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "15432592759-6rial11f6adefvcb6gvepvrji6pokl6n.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC6zj0kkx0ju0cZwCT6xl4oskclAWf6m0s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "15432592759-6rial11f6adefvcb6gvepvrji6pokl6n.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
