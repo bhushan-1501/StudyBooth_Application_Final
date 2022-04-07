@@ -41,6 +41,8 @@ dependencies:
   image_picker: ^0.8.4+11
   font_awesome_flutter: ^10.0.0
   firebase_storage: ^10.0.3
+  edge_alert: ^0.0.1
+  
 
 dev_dependencies:
   flutter_test:

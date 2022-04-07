@@ -80,6 +80,7 @@ class _DrawerUserControllerState extends State<DrawerUserController>
               curve: Curves.fastOutSlowIn);
         }
       });
+      
     WidgetsBinding.instance?.addPostFrameCallback((_) => getInitState());
     super.initState();
   }

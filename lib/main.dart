@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
+
+import 'package:firebase_core/firebase_core.dart';
 import 'package:studybooth_application/dashboards/AdminDashboard/AdminDashboard.dart';
 import 'package:studybooth_application/dashboards/AdminDashboard/registration_page.dart';
+import 'package:studybooth_application/dashboards/StudentDashboard/chatter_screen.dart';
+import 'package:studybooth_application/dashboards/StudentDashboard/contact_teacher.dart';
+import 'package:studybooth_application/dashboards/StudentDashboard/test_firebase.dart';
 import 'package:studybooth_application/pages/Alogin_page.dart';
 import 'package:studybooth_application/pages/Tlogin_page.dart';
 
@@ -9,7 +14,9 @@ import 'pages/main_page.dart';
 import 'utils/routes.dart';
 import 'widgets/splashscreen.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(const MyApp());
 }
 
@@ -21,7 +28,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
         debugShowCheckedModeBanner: false,
-        initialRoute: MyRoutes.splashRoute,
+        initialRoute: MyRoutes.sloginRoute,
         routes: {
           MyRoutes.splashRoute: (context) => SplashScreen(),
           MyRoutes.mainPageRoute: (context) => Main_Page(),
@@ -30,6 +37,8 @@ class MyApp extends StatelessWidget {
           MyRoutes.tloginRoute: (context) => T_login(),
           MyRoutes.adashRoute: (context) => AdminDashboard(),
           MyRoutes.aregRoute: (context) => RegistrationPage(),
+          MyRoutes.testRoute: (context) => Contact_Teacher(),
+          MyRoutes.chatterRoute: (context) => ChatApp(),
         });
   }
 }

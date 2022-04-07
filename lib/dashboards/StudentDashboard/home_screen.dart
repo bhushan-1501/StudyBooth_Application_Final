@@ -1,6 +1,11 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:studybooth_application/dashboards/StudentDashboard/contact_teacher.dart';
+import 'package:studybooth_application/dashboards/StudentDashboard/test_firebase.dart';
 import 'package:studybooth_application/models/homelist.dart';
+import 'package:studybooth_application/models/student_model.dart';
 import 'package:studybooth_application/utils/themes.dart';
 
 class MyHomePage extends StatefulWidget {
@@ -9,6 +14,8 @@ class MyHomePage extends StatefulWidget {
   @override
   _MyHomePageState createState() => _MyHomePageState();
 }
+
+StudentModel loggedInUser = StudentModel();
 
 class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
   List<HomeList> homeList = HomeList.homeList;
@@ -21,6 +28,15 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
     animationController = AnimationController(
         duration: const Duration(milliseconds: 2000), vsync: this);
     super.initState();
+    FirebaseFirestore.instance
+        .collection('students')
+        .doc(user!.uid)
+        .get()
+        .then((value) {
+      loggedInUser = StudentModel.fromMap(value.data());
+
+      setState(() {});
+    });
   }
 
   Future<bool> getData() async {
@@ -59,48 +75,7 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
                         if (!snapshot.hasData) {
                           return const SizedBox();
                         } else {
-                          return GridView(
-                            padding: const EdgeInsets.only(
-                                top: 0, left: 12, right: 12),
-                            physics: const BouncingScrollPhysics(),
-                            scrollDirection: Axis.vertical,
-                            children: List<Widget>.generate(
-                              homeList.length,
-                              (int index) {
-                                final int count = homeList.length;
-                                final Animation<double> animation =
-                                    Tween<double>(begin: 0.0, end: 1.0).animate(
-                                  CurvedAnimation(
-                                    parent: animationController!,
-                                    curve: Interval((1 / count) * index, 1.0,
-                                        curve: Curves.fastOutSlowIn),
-                                  ),
-                                );
-                                animationController?.forward();
-                                return HomeListView(
-                                  animation: animation,
-                                  animationController: animationController,
-                                  listData: homeList[index],
-                                  callBack: () {
-                                    Navigator.push<dynamic>(
-                                      context,
-                                      MaterialPageRoute<dynamic>(
-                                        builder: (BuildContext context) =>
-                                            homeList[index].navigateScreen!,
-                                      ),
-                                    );
-                                  },
-                                );
-                              },
-                            ),
-                            gridDelegate:
-                                SliverGridDelegateWithFixedCrossAxisCount(
-                              crossAxisCount: multiple ? 2 : 1,
-                              mainAxisSpacing: 12.0,
-                              crossAxisSpacing: 12.0,
-                              childAspectRatio: 1.5,
-                            ),
-                          );
+                          return HomeListView();
                         }
                       },
                     ),
@@ -175,43 +150,288 @@ class HomeListView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AnimatedBuilder(
-      animation: animationController!,
-      builder: (BuildContext context, Widget? child) {
-        return FadeTransition(
-          opacity: animation!,
-          child: Transform(
-            transform: Matrix4.translationValues(
-                0.0, 50 * (1.0 - animation!.value), 0.0),
-            child: AspectRatio(
-              aspectRatio: 1.5,
-              child: ClipRRect(
-                borderRadius: const BorderRadius.all(Radius.circular(4.0)),
-                child: Stack(
-                  alignment: AlignmentDirectional.center,
+    return Container(
+      padding: EdgeInsets.all(10.0),
+      child: GridView.count(
+        crossAxisCount: 3,
+        children: <Widget>[
+          Card(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(15.0),
+            ),
+            elevation: 10,
+            margin: EdgeInsets.all(8.0),
+            child: InkWell(
+              onTap: () {
+                Fluttertoast.showToast(msg: "About Section");
+              },
+              splashColor: Colors.lightBlueAccent,
+              child: Center(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
                   children: <Widget>[
-                    Positioned.fill(
-                      child: Image.asset(
-                        listData!.imagePath,
-                        fit: BoxFit.cover,
-                      ),
+                    Icon(
+                      Icons.account_balance,
+                      size: 50.0,
                     ),
-                    Material(
-                      color: Colors.transparent,
-                      child: InkWell(
-                        splashColor: Colors.grey.withOpacity(0.2),
-                        borderRadius:
-                            const BorderRadius.all(Radius.circular(4.0)),
-                        onTap: callBack,
-                      ),
-                    ),
+                    Text("Attendence",
+                        textAlign: TextAlign.center,
+                        style: new TextStyle(fontSize: 17.0))
                   ],
                 ),
               ),
             ),
           ),
-        );
-      },
+          Card(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(15.0),
+            ),
+            elevation: 10,
+            margin: EdgeInsets.all(8.0),
+            child: InkWell(
+              onTap: () {
+                Navigator.of(context).pushReplacement(
+                    MaterialPageRoute(builder: (context) => Test_Firebase()));
+              },
+              splashColor: Colors.lightBlueAccent,
+              child: Center(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: <Widget>[
+                    Icon(
+                      Icons.collections_bookmark,
+                      size: 50.0,
+                    ),
+                    Text("TEST",
+                        textAlign: TextAlign.center,
+                        style: new TextStyle(fontSize: 17.0))
+                  ],
+                ),
+              ),
+            ),
+          ),
+          Card(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(15.0),
+            ),
+            elevation: 10,
+            margin: EdgeInsets.all(8.0),
+            child: InkWell(
+              onTap: () {
+                Fluttertoast.showToast(msg: "Academics Section");
+              },
+              splashColor: Colors.lightBlueAccent,
+              child: Center(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: <Widget>[
+                    Icon(
+                      Icons.school,
+                      size: 50.0,
+                    ),
+                    Text("Academics",
+                        textAlign: TextAlign.center,
+                        style: new TextStyle(fontSize: 17.0))
+                  ],
+                ),
+              ),
+            ),
+          ),
+          Card(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(15.0),
+            ),
+            elevation: 10,
+            margin: EdgeInsets.all(8.0),
+            child: InkWell(
+              onTap: () {
+                Navigator.of(context).pushReplacement(
+                    MaterialPageRoute(builder: (context) => Contact_Teacher()));
+              },
+              splashColor: Colors.lightBlueAccent,
+              child: Center(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: <Widget>[
+                    Icon(
+                      Icons.contact_phone,
+                      size: 50.0,
+                    ),
+                    Text("Contact Teacher",
+                        textAlign: TextAlign.center,
+                        style: new TextStyle(fontSize: 17.0))
+                  ],
+                ),
+              ),
+            ),
+          ),
+          Card(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(15.0),
+            ),
+            elevation: 10,
+            margin: EdgeInsets.all(8.0),
+            child: InkWell(
+              onTap: () {
+                Fluttertoast.showToast(msg: "Placement Section");
+              },
+              splashColor: Colors.lightBlueAccent,
+              child: Center(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: <Widget>[
+                    Icon(
+                      Icons.card_travel,
+                      size: 50.0,
+                    ),
+                    Text("Placement",
+                        textAlign: TextAlign.center,
+                        style: new TextStyle(fontSize: 17.0))
+                  ],
+                ),
+              ),
+            ),
+          ),
+          Card(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(15.0),
+            ),
+            elevation: 10,
+            margin: EdgeInsets.all(8.0),
+            child: InkWell(
+              onTap: () {
+                Fluttertoast.showToast(msg: "Exam Section");
+              },
+              splashColor: Colors.lightBlueAccent,
+              child: Center(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: <Widget>[
+                    Icon(
+                      Icons.content_paste,
+                      size: 50.0,
+                    ),
+                    Text("Exam Section",
+                        textAlign: TextAlign.center,
+                        style: new TextStyle(fontSize: 17.0))
+                  ],
+                ),
+              ),
+            ),
+          ),
+          Card(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(15.0),
+            ),
+            elevation: 10,
+            margin: EdgeInsets.all(8.0),
+            child: InkWell(
+              onTap: () {
+                Fluttertoast.showToast(msg: "Bus Section");
+              },
+              splashColor: Colors.lightBlueAccent,
+              child: Center(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: <Widget>[
+                    Icon(
+                      Icons.departure_board,
+                      size: 50.0,
+                    ),
+                    Text(
+                      "Bus",
+                      style: new TextStyle(fontSize: 17.0),
+                      textAlign: TextAlign.center,
+                    )
+                  ],
+                ),
+              ),
+            ),
+          ),
+          Card(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(15.0),
+            ),
+            elevation: 10,
+            margin: EdgeInsets.all(8.0),
+            child: InkWell(
+              onTap: () {
+                Fluttertoast.showToast(msg: "Notice Section");
+              },
+              splashColor: Colors.lightBlueAccent,
+              child: Center(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: <Widget>[
+                    Icon(
+                      Icons.notification_important,
+                      size: 50.0,
+                    ),
+                    Text("Notice",
+                        textAlign: TextAlign.center,
+                        style: new TextStyle(fontSize: 17.0))
+                  ],
+                ),
+              ),
+            ),
+          ),
+          Card(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(15.0),
+            ),
+            elevation: 10,
+            margin: EdgeInsets.all(8.0),
+            child: InkWell(
+              onTap: () {
+                Fluttertoast.showToast(msg: "Navigation Section");
+              },
+              splashColor: Colors.lightBlueAccent,
+              child: Center(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: <Widget>[
+                    Icon(
+                      Icons.add_location,
+                      size: 50.0,
+                    ),
+                    Text("Navigation",
+                        textAlign: TextAlign.center,
+                        style: new TextStyle(
+                          fontSize: 17.0,
+                        ))
+                  ],
+                ),
+              ),
+            ),
+          ),
+          Card(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(15.0),
+            ),
+            elevation: 10,
+            margin: EdgeInsets.all(8.0),
+            child: InkWell(
+              onTap: () {
+                Fluttertoast.showToast(msg: "Food Section");
+              },
+              splashColor: Colors.lightBlueAccent,
+              child: Center(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: <Widget>[
+                    Icon(
+                      Icons.restaurant,
+                      //color: Colors.amberAccent,
+                      size: 50.0,
+                    ),
+                    Text("Food", style: new TextStyle(fontSize: 17.0))
+                  ],
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

@@ -5,7 +5,10 @@ class MyRoutes {
   static String aloginRoute = "/alogin";
   static String tloginRoute = "/tlogin";
   static String ahomeRoute = "/ahome";
- static String adashRoute = "/adash";
- static String aregRoute = "/areg";
+  static String adashRoute = "/adash";
+  static String aregRoute = "/areg";
+  static String chatterRoute = "/chatter";
 
+
+  static String testRoute = "/test";
 }

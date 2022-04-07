@@ -224,7 +224,7 @@ class _TeacherFormState extends State<TeacherForm> {
                                         radius: 60.0,
                                         backgroundImage: _imageFile == null
                                             ? AssetImage(
-                                                "assets/images/addimage.jpg")
+                                                "assets/images/addImage.jpeg")
                                             : FileImage(File(_imageFile!.path))
                                                 as ImageProvider,
                                       ),
@@ -519,7 +519,7 @@ class _TeacherFormState extends State<TeacherForm> {
     // calling firestore
     // calling doctor model
     // sending the values
-    
+
     FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
     User? teacher = _auth.currentUser;
 

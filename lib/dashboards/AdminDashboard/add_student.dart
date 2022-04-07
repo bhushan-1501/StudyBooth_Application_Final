@@ -224,7 +224,7 @@ class _StudentFormState extends State<StudentForm> {
                                         radius: 60.0,
                                         backgroundImage: _imageFile == null
                                             ? AssetImage(
-                                                "assets/images/addimage.jpg")
+                                                "assets/images/addImage.jpeg")
                                             : FileImage(File(_imageFile!.path))
                                                 as ImageProvider,
                                       ),
