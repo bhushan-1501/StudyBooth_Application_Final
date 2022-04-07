@@ -3,7 +3,7 @@ import 'package:edge_alert/edge_alert.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 import 'package:flutter/material.dart';
-import 'package:studybooth_application/models/student_model.dart';
+import 'package:studybooth_application/models/teacher_model.dart';
 
 import '../../utils/themes.dart';
 
@@ -12,16 +12,16 @@ String username = 'User';
 String email = 'user@example.com';
 String messageText = "";
 String toemail = "";
-StudentModel loggedInUser = StudentModel();
+TeacherModel loggedInUser = TeacherModel();
 
-class ChatAppStudent extends StatefulWidget {
-  const ChatAppStudent({Key? key}) : super(key: key);
+class ChatAppTeacher extends StatefulWidget {
+  const ChatAppTeacher({Key? key}) : super(key: key);
 
   @override
-  State<ChatAppStudent> createState() => _ChatAppStudentState();
+  State<ChatAppTeacher> createState() => _ChatAppTeacherState();
 }
 
-class _ChatAppStudentState extends State<ChatAppStudent> {
+class _ChatAppTeacherState extends State<ChatAppTeacher> {
   final chatMsgTextController = TextEditingController();
 
   @override
@@ -38,11 +38,11 @@ class _ChatAppStudentState extends State<ChatAppStudent> {
       final uid = user?.uid;
       if (user != null) {
         FirebaseFirestore.instance
-            .collection("students")
+            .collection("teachers")
             .doc(uid)
             .get()
             .then((value) {
-          loggedInUser = StudentModel.fromMap(value.data());
+          loggedInUser = TeacherModel.fromMap(value.data());
           setState(() {
             username = loggedInUser.first!;
             email = loggedInUser.email!;

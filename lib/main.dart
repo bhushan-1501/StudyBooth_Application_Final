@@ -6,6 +6,7 @@ import 'package:studybooth_application/dashboards/AdminDashboard/registration_pa
 import 'package:studybooth_application/dashboards/StudentDashboard/chatter_screen.dart';
 import 'package:studybooth_application/dashboards/StudentDashboard/contact_teacher.dart';
 import 'package:studybooth_application/dashboards/StudentDashboard/test_firebase.dart';
+import 'package:studybooth_application/dashboards/TeacherDashboard/chatter_screen.dart';
 import 'package:studybooth_application/pages/Alogin_page.dart';
 import 'package:studybooth_application/pages/Tlogin_page.dart';
 
@@ -28,7 +29,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
         debugShowCheckedModeBanner: false,
-        initialRoute: MyRoutes.sloginRoute,
+        initialRoute: MyRoutes.tloginRoute,
         routes: {
           MyRoutes.splashRoute: (context) => SplashScreen(),
           MyRoutes.mainPageRoute: (context) => Main_Page(),
@@ -38,7 +39,8 @@ class MyApp extends StatelessWidget {
           MyRoutes.adashRoute: (context) => AdminDashboard(),
           MyRoutes.aregRoute: (context) => RegistrationPage(),
           MyRoutes.testRoute: (context) => Contact_Teacher(),
-          MyRoutes.chatterRoute: (context) => ChatApp(),
+          MyRoutes.chatterRoute: (context) => ChatAppStudent(),
+          MyRoutes.chatterStRoute: (context) => ChatAppTeacher(),
         });
   }
 }

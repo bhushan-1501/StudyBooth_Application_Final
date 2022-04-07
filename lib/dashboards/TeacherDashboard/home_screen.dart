@@ -1,6 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:studybooth_application/dashboards/TeacherDashboard/contact_student.dart';
 import 'package:studybooth_application/models/homelist.dart';
 import 'package:studybooth_application/models/teacher_model.dart';
 import 'package:studybooth_application/utils/themes.dart';
@@ -147,14 +149,284 @@ class HomeListView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Text(
-        "Welcome , ${loggedInUser.first}",
-        style: TextStyle(
-            color: Colors.black,
-            fontSize: 25.0,
-            fontWeight: FontWeight.bold,
-            letterSpacing: 2.0),
+    return Container(
+      padding: EdgeInsets.all(10.0),
+      child: GridView.count(
+        crossAxisCount: 3,
+        children: <Widget>[
+          Card(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(15.0),
+            ),
+            elevation: 10,
+            margin: EdgeInsets.all(8.0),
+            child: InkWell(
+              onTap: () {
+                Fluttertoast.showToast(msg: "About Section");
+              },
+              splashColor: Colors.lightBlueAccent,
+              child: Center(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: <Widget>[
+                    Icon(
+                      Icons.account_balance,
+                      size: 50.0,
+                    ),
+                    Text("Attendence",
+                        textAlign: TextAlign.center,
+                        style: new TextStyle(fontSize: 17.0))
+                  ],
+                ),
+              ),
+            ),
+          ),
+          Card(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(15.0),
+            ),
+            elevation: 10,
+            margin: EdgeInsets.all(8.0),
+            child: InkWell(
+              onTap: () {},
+              splashColor: Colors.lightBlueAccent,
+              child: Center(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: <Widget>[
+                    Icon(
+                      Icons.collections_bookmark,
+                      size: 50.0,
+                    ),
+                    Text("TEST",
+                        textAlign: TextAlign.center,
+                        style: new TextStyle(fontSize: 17.0))
+                  ],
+                ),
+              ),
+            ),
+          ),
+          Card(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(15.0),
+            ),
+            elevation: 10,
+            margin: EdgeInsets.all(8.0),
+            child: InkWell(
+              onTap: () {
+                Fluttertoast.showToast(msg: "Academics Section");
+              },
+              splashColor: Colors.lightBlueAccent,
+              child: Center(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: <Widget>[
+                    Icon(
+                      Icons.school,
+                      size: 50.0,
+                    ),
+                    Text("Academics",
+                        textAlign: TextAlign.center,
+                        style: new TextStyle(fontSize: 17.0))
+                  ],
+                ),
+              ),
+            ),
+          ),
+          Card(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(15.0),
+            ),
+            elevation: 10,
+            margin: EdgeInsets.all(8.0),
+            child: InkWell(
+              onTap: () {
+                Navigator.of(context).pushReplacement(
+                    MaterialPageRoute(builder: (context) => Contact_Student()));
+              },
+              splashColor: Colors.lightBlueAccent,
+              child: Center(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: <Widget>[
+                    Icon(
+                      Icons.contact_phone,
+                      size: 50.0,
+                    ),
+                    Text("Contact Teacher",
+                        textAlign: TextAlign.center,
+                        style: new TextStyle(fontSize: 17.0))
+                  ],
+                ),
+              ),
+            ),
+          ),
+          Card(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(15.0),
+            ),
+            elevation: 10,
+            margin: EdgeInsets.all(8.0),
+            child: InkWell(
+              onTap: () {
+                Fluttertoast.showToast(msg: "Placement Section");
+              },
+              splashColor: Colors.lightBlueAccent,
+              child: Center(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: <Widget>[
+                    Icon(
+                      Icons.card_travel,
+                      size: 50.0,
+                    ),
+                    Text("Placement",
+                        textAlign: TextAlign.center,
+                        style: new TextStyle(fontSize: 17.0))
+                  ],
+                ),
+              ),
+            ),
+          ),
+          Card(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(15.0),
+            ),
+            elevation: 10,
+            margin: EdgeInsets.all(8.0),
+            child: InkWell(
+              onTap: () {
+                Fluttertoast.showToast(msg: "Exam Section");
+              },
+              splashColor: Colors.lightBlueAccent,
+              child: Center(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: <Widget>[
+                    Icon(
+                      Icons.content_paste,
+                      size: 50.0,
+                    ),
+                    Text("Exam Section",
+                        textAlign: TextAlign.center,
+                        style: new TextStyle(fontSize: 17.0))
+                  ],
+                ),
+              ),
+            ),
+          ),
+          Card(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(15.0),
+            ),
+            elevation: 10,
+            margin: EdgeInsets.all(8.0),
+            child: InkWell(
+              onTap: () {
+                Fluttertoast.showToast(msg: "Bus Section");
+              },
+              splashColor: Colors.lightBlueAccent,
+              child: Center(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: <Widget>[
+                    Icon(
+                      Icons.departure_board,
+                      size: 50.0,
+                    ),
+                    Text(
+                      "Bus",
+                      style: new TextStyle(fontSize: 17.0),
+                      textAlign: TextAlign.center,
+                    )
+                  ],
+                ),
+              ),
+            ),
+          ),
+          Card(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(15.0),
+            ),
+            elevation: 10,
+            margin: EdgeInsets.all(8.0),
+            child: InkWell(
+              onTap: () {
+                Fluttertoast.showToast(msg: "Notice Section");
+              },
+              splashColor: Colors.lightBlueAccent,
+              child: Center(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: <Widget>[
+                    Icon(
+                      Icons.notification_important,
+                      size: 50.0,
+                    ),
+                    Text("Notice",
+                        textAlign: TextAlign.center,
+                        style: new TextStyle(fontSize: 17.0))
+                  ],
+                ),
+              ),
+            ),
+          ),
+          Card(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(15.0),
+            ),
+            elevation: 10,
+            margin: EdgeInsets.all(8.0),
+            child: InkWell(
+              onTap: () {
+                Fluttertoast.showToast(msg: "Navigation Section");
+              },
+              splashColor: Colors.lightBlueAccent,
+              child: Center(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: <Widget>[
+                    Icon(
+                      Icons.add_location,
+                      size: 50.0,
+                    ),
+                    Text("Navigation",
+                        textAlign: TextAlign.center,
+                        style: new TextStyle(
+                          fontSize: 17.0,
+                        ))
+                  ],
+                ),
+              ),
+            ),
+          ),
+          Card(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(15.0),
+            ),
+            elevation: 10,
+            margin: EdgeInsets.all(8.0),
+            child: InkWell(
+              onTap: () {
+                Fluttertoast.showToast(msg: "Food Section");
+              },
+              splashColor: Colors.lightBlueAccent,
+              child: Center(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: <Widget>[
+                    Icon(
+                      Icons.restaurant,
+                      //color: Colors.amberAccent,
+                      size: 50.0,
+                    ),
+                    Text("Food", style: new TextStyle(fontSize: 17.0))
+                  ],
+                ),
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }

@@ -8,7 +8,7 @@ class MyRoutes {
   static String adashRoute = "/adash";
   static String aregRoute = "/areg";
   static String chatterRoute = "/chatter";
-
+  static String chatterStRoute = "/chatter_student";
 
   static String testRoute = "/test";
 }
