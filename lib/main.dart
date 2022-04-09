@@ -29,7 +29,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
         debugShowCheckedModeBanner: false,
-        initialRoute: MyRoutes.tloginRoute,
+        initialRoute: MyRoutes.testRoute,
         routes: {
           MyRoutes.splashRoute: (context) => SplashScreen(),
           MyRoutes.mainPageRoute: (context) => Main_Page(),
@@ -38,7 +38,7 @@ class MyApp extends StatelessWidget {
           MyRoutes.tloginRoute: (context) => T_login(),
           MyRoutes.adashRoute: (context) => AdminDashboard(),
           MyRoutes.aregRoute: (context) => RegistrationPage(),
-          MyRoutes.testRoute: (context) => Contact_Teacher(),
+          MyRoutes.testRoute: (context) => Test_Firebase(),
           MyRoutes.chatterRoute: (context) => ChatAppStudent(),
           MyRoutes.chatterStRoute: (context) => ChatAppTeacher(),
         });

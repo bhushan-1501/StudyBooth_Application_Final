@@ -1,7 +1,9 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:studybooth_application/main.dart';
+import 'package:studybooth_application/dashboards/TeacherDashboard/home_screen.dart';
+import 'package:studybooth_application/models/teacher_model.dart';
 import 'package:studybooth_application/pages/main_page.dart';
 import 'package:studybooth_application/utils/themes.dart';
 
@@ -23,12 +25,34 @@ class HomeDrawer extends StatefulWidget {
 
 class _HomeDrawerState extends State<HomeDrawer> {
   List<DrawerList>? drawerList;
+  TeacherModel loggedInUser = TeacherModel();
+
   @override
   void initState() {
+    getcurrentuser();
+    print(this.loggedInUser.last);
+    set_user();
     setDrawerListArray();
     super.initState();
   }
 
+  void getcurrentuser() {
+    final FirebaseAuth auth = FirebaseAuth.instance;
+    final User? user = auth.currentUser;
+    final uid = user?.uid;
+    print(uid);
+
+    FirebaseFirestore.instance
+        .collection("teachers")
+        .doc(uid)
+        .get()
+        .then((value) {
+      this.loggedInUser = TeacherModel.fromMap(value.data());
+    });
+    print(this.loggedInUser.first);
+  }
+
+  void set_user() {}
   void setDrawerListArray() {
     drawerList = <DrawerList>[
       DrawerList(
@@ -106,8 +130,24 @@ class _HomeDrawerState extends State<HomeDrawer> {
                             child: ClipRRect(
                               borderRadius:
                                   const BorderRadius.all(Radius.circular(60.0)),
-                              child: Image.asset(
-                                  'assets/images/TeacherImage.jpeg'),
+                              child: FadeInImage(
+                                  height: 50,
+                                  width: 50,
+                                  fadeInDuration:
+                                      const Duration(milliseconds: 500),
+                                  fadeInCurve: Curves.easeInExpo,
+                                  fadeOutCurve: Curves.easeOutExpo,
+                                  placeholder:
+                                      AssetImage("assets/images/loading.gif"),
+                                  image: NetworkImage(
+                                      loggedInUser.imageUrl.toString()),
+                                  imageErrorBuilder:
+                                      (context, error, stackTrace) {
+                                    return Container(
+                                        child: Image.asset(
+                                            "assets/images/loading.gif"));
+                                  },
+                                  fit: BoxFit.cover),
                             ),
                           ),
                         ),
@@ -117,7 +157,9 @@ class _HomeDrawerState extends State<HomeDrawer> {
                   Padding(
                     padding: const EdgeInsets.only(top: 8, left: 4),
                     child: Text(
-                      'Teacher Panel ',
+                      loggedInUser.first.toString() +
+                          " " +
+                          loggedInUser.last.toString(),
                       style: TextStyle(
                         fontWeight: FontWeight.w600,
                         color: MyThemes.grey,
@@ -296,6 +338,12 @@ class _HomeDrawerState extends State<HomeDrawer> {
   }
 }
 
+@override
+Widget build(BuildContext context) {
+  // TODO: implement build
+  throw UnimplementedError();
+}
+
 enum DrawerIndex {
   HOME,
   FeedBack,
@@ -303,6 +351,7 @@ enum DrawerIndex {
   Share,
   About,
   Testing,
+  Contact_teacher,
 }
 
 class DrawerList {
