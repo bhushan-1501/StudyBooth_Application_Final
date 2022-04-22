@@ -196,6 +196,9 @@ class ChatStream extends StatelessWidget {
       builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
         if (snapshot.hasData) {
           final messages = snapshot.data?.docs.reversed;
+          print(snapshot.data?.docs);
+          print(toemail);
+          print(email);
           List<MessageBubble> messageWidgets = [];
           for (var message in messages!) {
             final msgText = message['text'];

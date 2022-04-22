@@ -3,6 +3,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:studybooth_application/dashboards/StudentDashboard/contact_teacher.dart';
+import 'package:studybooth_application/dashboards/StudentDashboard/join_gmeet.dart';
+import 'package:studybooth_application/dashboards/StudentDashboard/open_drive.dart';
 import 'package:studybooth_application/dashboards/StudentDashboard/test_firebase.dart';
 import 'package:studybooth_application/models/homelist.dart';
 import 'package:studybooth_application/models/student_model.dart';
@@ -163,7 +165,8 @@ class HomeListView extends StatelessWidget {
             margin: EdgeInsets.all(8.0),
             child: InkWell(
               onTap: () {
-                Fluttertoast.showToast(msg: "About Section");
+                Navigator.of(context).pushReplacement(
+                    MaterialPageRoute(builder: (context) => Join_Gmeet()));
               },
               splashColor: Colors.lightBlueAccent,
               child: Center(
@@ -174,7 +177,7 @@ class HomeListView extends StatelessWidget {
                       Icons.account_balance,
                       size: 50.0,
                     ),
-                    Text("Attendence",
+                    Text("Join Gmeet",
                         textAlign: TextAlign.center,
                         style: new TextStyle(fontSize: 17.0))
                   ],
@@ -191,7 +194,7 @@ class HomeListView extends StatelessWidget {
             child: InkWell(
               onTap: () {
                 Navigator.of(context).pushReplacement(
-                    MaterialPageRoute(builder: (context) => Test_Firebase()));
+                    MaterialPageRoute(builder: (context) => OpenDrive()));
               },
               splashColor: Colors.lightBlueAccent,
               child: Center(
@@ -202,7 +205,7 @@ class HomeListView extends StatelessWidget {
                       Icons.collections_bookmark,
                       size: 50.0,
                     ),
-                    Text("TEST",
+                    Text("Drive Folders",
                         textAlign: TextAlign.center,
                         style: new TextStyle(fontSize: 17.0))
                   ],

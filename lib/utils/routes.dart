@@ -7,6 +7,11 @@ class MyRoutes {
   static String ahomeRoute = "/ahome";
   static String adashRoute = "/adash";
   static String aregRoute = "/areg";
+
+    static String addgmeetRoute = "/addgmeet";
+  
+    static String adddriveRoute = "/adddrive";
+
   static String chatterRoute = "/chatter";
   static String chatterStRoute = "/chatter_student";
 

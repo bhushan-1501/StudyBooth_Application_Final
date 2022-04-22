@@ -4,8 +4,9 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:studybooth_application/dashboards/AdminDashboard/AdminDashboard.dart';
 import 'package:studybooth_application/dashboards/AdminDashboard/registration_page.dart';
 import 'package:studybooth_application/dashboards/StudentDashboard/chatter_screen.dart';
-import 'package:studybooth_application/dashboards/StudentDashboard/contact_teacher.dart';
 import 'package:studybooth_application/dashboards/StudentDashboard/test_firebase.dart';
+import 'package:studybooth_application/dashboards/TeacherDashboard/add_drive.dart';
+import 'package:studybooth_application/dashboards/TeacherDashboard/add_gmeet.dart';
 import 'package:studybooth_application/dashboards/TeacherDashboard/chatter_screen.dart';
 import 'package:studybooth_application/pages/Alogin_page.dart';
 import 'package:studybooth_application/pages/Tlogin_page.dart';
@@ -29,7 +30,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
         debugShowCheckedModeBanner: false,
-        initialRoute: MyRoutes.testRoute,
+        initialRoute: MyRoutes.splashRoute,
         routes: {
           MyRoutes.splashRoute: (context) => SplashScreen(),
           MyRoutes.mainPageRoute: (context) => Main_Page(),
@@ -41,6 +42,8 @@ class MyApp extends StatelessWidget {
           MyRoutes.testRoute: (context) => Test_Firebase(),
           MyRoutes.chatterRoute: (context) => ChatAppStudent(),
           MyRoutes.chatterStRoute: (context) => ChatAppTeacher(),
+          MyRoutes.addgmeetRoute: (context) => AddGmeet(),
+          MyRoutes.adddriveRoute: (context) => AddDrive(),
         });
   }
 }

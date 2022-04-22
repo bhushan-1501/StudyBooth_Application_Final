@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:studybooth_application/dashboards/TeacherDashboard/add_gmeet.dart';
 import 'package:studybooth_application/dashboards/TeacherDashboard/contact_student.dart';
 import 'package:studybooth_application/models/homelist.dart';
 import 'package:studybooth_application/models/teacher_model.dart';
@@ -162,7 +163,9 @@ class HomeListView extends StatelessWidget {
             margin: EdgeInsets.all(8.0),
             child: InkWell(
               onTap: () {
-                Fluttertoast.showToast(msg: "About Section");
+                Navigator.pushNamed(context, '/addgmeet', arguments: {
+                  'model': loggedInUser,
+                });
               },
               splashColor: Colors.lightBlueAccent,
               child: Center(
@@ -173,7 +176,7 @@ class HomeListView extends StatelessWidget {
                       Icons.account_balance,
                       size: 50.0,
                     ),
-                    Text("Attendence",
+                    Text("Add Lecture",
                         textAlign: TextAlign.center,
                         style: new TextStyle(fontSize: 17.0))
                   ],
@@ -188,7 +191,11 @@ class HomeListView extends StatelessWidget {
             elevation: 10,
             margin: EdgeInsets.all(8.0),
             child: InkWell(
-              onTap: () {},
+              onTap: () {
+                Navigator.pushNamed(context, '/adddrive', arguments: {
+                  'model': loggedInUser,
+                });
+              },
               splashColor: Colors.lightBlueAccent,
               child: Center(
                 child: Column(
@@ -198,7 +205,7 @@ class HomeListView extends StatelessWidget {
                       Icons.collections_bookmark,
                       size: 50.0,
                     ),
-                    Text("TEST",
+                    Text("Add Drive Folder",
                         textAlign: TextAlign.center,
                         style: new TextStyle(fontSize: 17.0))
                   ],
@@ -253,7 +260,7 @@ class HomeListView extends StatelessWidget {
                       Icons.contact_phone,
                       size: 50.0,
                     ),
-                    Text("Contact Teacher",
+                    Text("Contact Students",
                         textAlign: TextAlign.center,
                         style: new TextStyle(fontSize: 17.0))
                   ],
