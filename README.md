@@ -29,7 +29,8 @@ By bringing teachers and students onto one platform, StudyBooth aims to enhance 
 
 <div style="display: flex;">
   
-  <img src="https://github.com/bhushan-1501/StudyBooth_Application_Final/assets/96251503/908f5dda-109d-4bd5-8a16-20a4be9cb872" style="width: 20%;height:50%;" />
+  <img src="https://github.com/bhushan-1501/StudyBooth_Application_Final/assets/96251503/908f5dda-109d-4bd5-8a16-20a4be9cb872" style="width: 20%;height:50%;" /> 
+  <img src="https://github-production-user-asset-6210df.s3.amazonaws.com/96251503/240966485-be8ce29d-a4df-4d21-9486-de31e6a8be7c.png" style="width: 20%;height:50%;" />
 
 
 </div>
@@ -52,3 +53,12 @@ By bringing teachers and students onto one platform, StudyBooth aims to enhance 
   <img src="https://github.com/bhushan-1501/StudyBooth_Application_Final/assets/96251503/f526f6dc-fe9e-4353-a9e4-aca71128c2cb" style="width: 20%;height:50%;" />
   
 </div>
+
+* Chat Screens
+
+<div style="display: flex;">
+  <img src="https://github.com/bhushan-1501/StudyBooth_Application_Final/assets/96251503/8545a16d-c28e-4efe-8db4-785df833073a" style="width: 40%;height:50%;" />
+  
+  
+</div>
+
